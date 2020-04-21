@@ -2,46 +2,45 @@
 
 /**
  * ### Challenge `processFirstItem`
- * 
+ *
  * @instructions
  * Implement a higher-order function called `processFirstItem`.
  * It takes two arguments:
  * @param stringList an array of strings.
  * @param callback function that takes a string as its argument.
  * @returns the result of invoking `callback` with the FIRST element in `stringList`.
- * 
+ *
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
-*/
+ */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
 /* Task 1: `counterMaker`
  * Study the code for counter1 and counter2. Answer the questions below.
- * 
- * 1. What is the difference between counter1 and counter2?
- * 
- * 2. Which of the two uses a closure? How can you tell?
- * 
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
-*/
+ * 1. What is the difference between counter1 and counter2? //todo <counter1> has the let-variable inside of a function unlike <counter2>. Also, <counter1>
+ *
+ * 2. Which of the two uses a closure? How can you tell? //todo counter1 uses closure since there is an inner function accessing a variable from a higher level.
+ *
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? //! Counter1's code would be best for a situation where you are logging a count and updating that value by running the code again.
+ * //? Counter2's code would be best if you want to pass <count> to set up a reference before assigning value.
+ *
+ */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
     count++;
-  }
+  };
 }
-
 const counter1 = counterMaker();
 
 // counter2 code
@@ -51,15 +50,12 @@ function counter2() {
   return count++;
 }
 
-
 /* Task 2: inning() 
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(canOfCorn) {
+  /*Code Here*/
 }
 
 /* Task 3: finalScore()
@@ -74,12 +70,10 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
 
-function finalScore(/*code Here*/){
-
+function finalScore(/*code Here*/) {
   /*Code Here*/
-
 }
 
 /* Task 4: 
@@ -107,5 +101,3 @@ Final Score: awayTeam - homeTeam */
 function scoreboard(/* CODE HERE */) {
   /* CODE HERE */
 }
-
-
