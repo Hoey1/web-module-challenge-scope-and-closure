@@ -53,7 +53,7 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(canOfCorn) {
+function inning() {
   var count = 0;
   for (let i = 0; i < 1; i++)
     for (var a = 0; a < Math.floor(Math.random() * 3); a++) {
@@ -113,73 +113,34 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(inning, frames, getInningScore) {
-  let homeScore = 0;
-  let awayScore = 0;
-  for (let i = 0; i < frames)
+function getInningsScore(inning) {
+  return {
+    home: innings(),
+    away: innings(),
+  };
 }
 
+function scoreboard(getInningsScore, inning, frames) {
+  let homeTeam = 0;
+  let awayTeam = 0;
+  let results = [];
+  for (let i = 1; i <= frames; i++) {
+    const currentInnings = getInningsScore(inning); //? Current Innings Random Score
+    homeTeam += currentInnings.home; //? Targets Home Object Key And Adds Score
+    awayTeam += currentInnings.away; //? Targets Away Object Key And Adds Score
+    results.push(
+      `${i + 1} inning: ${currentInnings.away} - ${currentInnings.home}`
+    );
+  } //todo Ends For-Loop
 
+  if (homeTeam === awayTeam) {
+    results.push(
+      `This Game Will Require Extra Innings - Free Baseball Everyone!`
+    );
+  } else {
+    results.push(`Final Score: ${awayTeam} - ${homeTeam}`);
+  } // Ends if Statement
+  return results;
+} //todo Ends Function
 
-
-
-
-
-/////////////////////
-/////////////////////
-/////////////////////
-
- 
-// function inning(canOfCorn) {
-//   var count = 0;
-//   for (let i = 0; i < 1; i++)
-//     for (var a = 0; a < Math.floor(Math.random() * 3); a++) {
-//       count++;
-//     }
-//   return count;
-// }
-
-// /////////////////////
-// /////////////////////
-// /////////////////////
-
-// function game(sport) {
-//   let score = 0;
-//   return function win() {
-//     score++;
-//     return `your ${sport} game score is ${score}`;
-//   };
-// }
-
-// //* I can come here and make a game
-// const baseballGame = game("baseball");
-
-// console.log(baseballGame()); //* RESULT: 'Your baseball game score is 1'
-
-// //////////////////////////
-
-// console.log(baseballGame()); //* RESULT: 'Your baseball game score is 2'
-// console.log(baseballGame()); //* RESULT: 'Your baseball game score is 3'
-
-
-
-
-
-
-
-
-//? Inning will be pulled from above
-//* Number of innings will be supplied when called currently named <frames>
-//! getInningScore is going to be will be a for-loop based on the number of frames/innings. 
-//!     so if 5 was entered for the number of innings, only 5 outputs like this would show:
-
-//*       1st inning: awayTeam - homeTeam
-//*       2nd inning: awayTeam - homeTeam
-//*       3rd inning: awayTeam - homeTeam
-//*       4th inning: awayTeam - homeTeam
-//*       5th inning: awayTeam - homeTeam
-
-
-// OR THIS WAY
-
-//! could take the total task 3, dived that by number of innings and spread it out over as such
+console.log(scoreboard(getInningsScore, inning, 9));
